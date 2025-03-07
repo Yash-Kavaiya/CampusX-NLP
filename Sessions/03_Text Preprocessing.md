@@ -1,10 +1,10 @@
-# Text Preprocessing
 # 🔍 Text Preprocessing in NLP: A Comprehensive Guide 
 
 ## 📋 Introduction
 
 Text preprocessing is the cornerstone of Natural Language Processing (NLP), transforming raw, unstructured text into a clean, structured format that machine learning algorithms can effectively process. This critical step significantly impacts the performance of NLP models by normalizing text, reducing dimensionality, and eliminating noise.
 
+https://medium.com/@yash.kavaiya3/the-nlp-engineers-guide-to-text-preprocessing-building-the-foundation-for-robust-language-models-0914270184ff
 ---
 
 ## 🔤 1. Lowercasing
