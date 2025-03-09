@@ -372,5 +372,420 @@ Similarity(D1, D3) = Dot product([1,1,1,0,0], [1,0,0,1,1]) = 1
 ```
 
 > 💡 This simple analysis shows D1 and D2 share more common terms (2) than D1 and D3 (1).
+# 📊 N-grams in NLP: Beyond Single Words 🔤
 
+## 🔍 What Are N-grams?
+
+**N-grams** are contiguous sequences of n items (words, characters, or tokens) from a text document. Unlike the standard Bag of Words model that treats each word individually, N-grams capture adjacent elements, preserving some of the sequential information in text.
+
+> 💡 **Key Insight**: N-grams attempt to preserve local word order patterns that single-word models miss entirely.
+
+```mermaid
+graph LR
+    A[Text] --> B[Tokenization]
+    B --> C[Generate Sequences]
+    C --> D[Count N-gram Frequencies]
+    D --> E[Create Feature Vectors]
+```
+
+## 🧩 Types of N-grams
+
+| N-gram Type | Description | Example from "people watch campusx" |
+|-------------|-------------|-----------------------------------|
+| 🔹 **Unigrams** (n=1) | Single tokens | "people", "watch", "campusx" |
+| 🔹 **Bigrams** (n=2) | Pairs of adjacent tokens | "people watch", "watch campusx" |
+| 🔹 **Trigrams** (n=3) | Triplets of adjacent tokens | "people watch campusx" |
+| 🔹 **4-grams** (n=4) | Four adjacent tokens | (none in this short example) |
+
+## 🎯 Bigram Example from the Image
+
+Your image shows how documents are represented using bigrams:
+
+### 📋 Document Corpus
+- D1: "people watch campusx"
+- D2: "campusx watch campusx"
+- D3: "people write comment"
+- D4: "campusx write comment"
+
+### 📊 Bigram Vocabulary (V=8)
+1. "people watch"
+2. "watch campusx"
+3. "campusx watch"
+4. "people write"
+5. "write comment"
+6. "campusx write"
+
+### 📈 Bigram Document-Term Matrix
+
+| Document | people watch | watch campusx | campusx watch | people write | write comment | campusx write |
+|----------|--------------|---------------|---------------|--------------|---------------|---------------|
+| D1       | 1            | 1             | 0             | 0            | 0             | 0             |
+| D2       | 0            | 1             | 1             | 0            | 0             | 0             |
+| D3       | 0            | 0             | 0             | 1            | 1             | 0             |
+| D4       | 0            | 0             | 0             | 0            | 1             | 1             |
+
+## ⚙️ Implementation Process
+
+```mermaid
+graph TD
+    A[Text Documents] --> B[Tokenization]
+    B --> C[Generate N-grams]
+    C --> D[Build N-gram Vocabulary]
+    D --> E[Count N-gram Frequencies]
+    E --> F[Create Feature Vectors]
+```
+
+## 📐 Mathematical Representation
+
+For a text with m tokens [w₁, w₂, ..., wₘ], the set of n-grams is:
+
+$$\{(w_i, w_{i+1}, ..., w_{i+n-1}) \mid 1 \leq i \leq m-n+1\}$$
+
+## ✅ Advantages of N-grams
+
+| Advantage | Description | Impact |
+|-----------|-------------|--------|
+| 🌟 **Preserves Local Context** | Captures word order and phrases | Better semantic preservation than BOW |
+| 🌟 **Language Model Foundation** | Basis for probabilistic language models | Enables text generation and prediction |
+| 🌟 **Simple Implementation** | Straightforward extension of BOW | Easily integrated into existing pipelines |
+| 🌟 **No Training Required** | Direct counting from corpus | Fast to implement compared to neural models |
+| 🌟 **Handles Fixed Expressions** | Better representation of idioms, phrases | "New York" stays together as a concept |
+| 🌟 **Improved Classification** | Often increases accuracy in text classification | Better features for ML algorithms |
+
+## ❌ Disadvantages of N-grams
+
+| Disadvantage | Description | Impact |
+|--------------|-------------|--------|
+| 🔴 **Exponential Vocabulary Growth** | Vocabulary size grows dramatically with n | Memory and computation costs increase |
+| 🔴 **Data Sparsity** | Most n-grams appear very rarely | Sparse vectors with many zeros |
+| 🔴 **Limited Context Window** | Only captures local patterns within n words | Misses long-range dependencies |
+| 🔴 **Out-of-Vocabulary Problem** | Any unseen n-gram is completely missed | Poor generalization to new text |
+| 🔴 **Rigid Sequence Matching** | Requires exact matches (no synonyms) | "very good" ≠ "really good" |
+| 🔴 **No Semantic Understanding** | Still fundamentally a counting model | Misses deeper meaning |
+
+## 🔍 N-gram Smoothing Techniques
+
+To address the sparsity problem, several smoothing methods exist:
+
+| Technique | Description | Benefit |
+|-----------|-------------|---------|
+| 🛠️ **Laplace (Add-1)** | Add 1 to all counts | Simple but often overestimates rare events |
+| 🛠️ **Add-k** | Add k (fraction) to all counts | More flexible than Add-1 |
+| 🛠️ **Good-Turing** | Reallocate probability mass | Better estimates for rare events |
+| 🛠️ **Kneser-Ney** | Uses absolute discounting | State-of-the-art for n-gram models |
+| 🛠️ **Backoff Models** | Fall back to (n-1)-grams when n-gram unseen | More robust predictions |
+
+## 📊 Comparing N-gram Models
+
+| Model | Context Captured | Vector Space Size | Sparsity | Common Applications |
+|-------|------------------|-------------------|----------|---------------------|
+| 🔹 **Unigrams** | None | V | Low | Topic classification, basic IR |
+| 🔹 **Bigrams** | 1 previous word | V² (potential) | Medium | Phrase detection, basic context |
+| 🔹 **Trigrams** | 2 previous words | V³ (potential) | High | Language modeling, speech recognition |
+| 🔹 **4-grams+** | 3+ previous words | V^n (potential) | Very High | Specialized language modeling |
+
+## 🚀 Applications of N-grams
+
+| Application | How N-grams Are Used | Why It Works |
+|-------------|----------------------|-------------|
+| 📝 **Language Identification** | Character n-grams frequencies | Languages have distinct n-gram patterns |
+| 🔤 **Spelling Correction** | Character n-gram probability | Likely character sequences guide corrections |
+| 🎯 **Text Classification** | Word n-gram features | Phrases provide better classification signals |
+| 🔍 **Information Retrieval** | Query-document n-gram matching | Multi-word queries match better |
+| 📊 **Language Modeling** | Predict next word from previous n-1 words | Statistical patterns in language |
+| 🧠 **Machine Translation** | Phrase-based translation | Better than word-by-word translation |
+
+## 🧮 Character N-grams vs. Word N-grams
+
+| Type | Advantages | Common Uses |
+|------|------------|------------|
+| 🔤 **Character N-grams** | • Handles misspellings<br>• Smaller vocabulary<br>• Works across languages | • Language ID<br>• Authorship analysis<br>• Spam detection |
+| 📚 **Word N-grams** | • Captures meaningful phrases<br>• Better semantic representation<br>• More intuitive | • Topic modeling<br>• Sentiment analysis<br>• Text generation |
+
+## 🌐 N-grams in Modern NLP
+
+While deep learning approaches have surpassed n-grams in performance for many NLP tasks, n-grams still remain relevant:
+
+- 🔹 As features in hybrid systems
+- 🔹 In resource-constrained environments
+- 🔹 For interpretable models where feature importance matters
+- 🔹 As baselines for comparing more complex models
+
+> 💡 **Evolution of Context Capture**: N-grams → RNNs → Attention → Transformers
+
+## 🧩 Code Example: Generating N-grams
+
+```python
+def generate_ngrams(text, n):
+    # Tokenize the text
+    tokens = text.lower().split()
+    
+    # Generate n-grams
+    ngrams = []
+    for i in range(len(tokens) - n + 1):
+        ngram = ' '.join(tokens[i:i+n])
+        ngrams.append(ngram)
+    
+    return ngrams
+
+# Example
+text = "people watch campusx"
+print(generate_ngrams(text, 2))  # Outputs: ['people watch', 'watch campusx']
+```
+
+## 🌟 The Big Picture: N-grams as Feature Extraction
+
+N-grams represent a crucial bridge between the simplicity of Bag-of-Words and more sophisticated context-aware models. While they cannot capture long-range dependencies or true semantic understanding, their ability to preserve local word order makes them a significant improvement over single-word models.
+
+---
+
+N-grams balance the trade-off between model complexity and contextual awareness, providing a robust framework that remains relevant even in today's deep learning-dominated NLP landscape.
+
+# 📊 TF-IDF: Term Frequency-Inverse Document Frequency 📚
+
+## 🔍 What is TF-IDF?
+
+**TF-IDF** (Term Frequency-Inverse Document Frequency) is a numerical statistic that reflects the importance of a word to a document in a collection of documents (corpus). It's one of the most powerful feature extraction techniques in NLP.
+
+> 💡 **Core Insight**: Not all words are created equal. TF-IDF increases the weight of terms that are frequent in a document but rare across the corpus, helping identify distinctive terms.
+
+```mermaid
+graph LR
+    A[Raw Text] --> B[Term Frequency]
+    A --> C[Inverse Document Frequency]
+    B --> D[TF-IDF Score]
+    C --> D
+    D --> E[Document Vectors]
+```
+
+## 🧮 Mathematical Formulation
+
+TF-IDF consists of two components multiplied together:
+
+$$\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D)$$
+
+Where:
+- t = term (word)
+- d = document
+- D = collection of documents (corpus)
+
+### 📈 Term Frequency (TF)
+
+TF measures how frequently a term occurs in a document:
+
+$$\text{TF}(t, d) = \frac{\text{Number of times term t appears in document d}}{\text{Total number of terms in document d}}$$
+
+### 📉 Inverse Document Frequency (IDF)
+
+IDF measures how important a term is across the entire corpus:
+
+$$\text{IDF}(t, D) = \log\left(\frac{\text{Total number of documents in corpus}}{\text{Number of documents containing term t}}\right)$$
+
+> 🔑 **Key Point**: The logarithm dampens the effect of IDF for very rare terms.
+
+## ⚙️ Calculating TF-IDF: Step-by-Step Process
+
+```mermaid
+graph TD
+    A[Input Documents] --> B[Tokenize Documents]
+    B --> C[Calculate TF for each term in each document]
+    B --> D[Calculate IDF for each term in corpus]
+    C --> E[Multiply TF and IDF]
+    D --> E
+    E --> F[Create TF-IDF Matrix]
+```
+
+### 1️⃣ Calculate Term Frequency (TF)
+
+For each term in each document:
+
+| TF Calculation Methods | Formula | Notes |
+|------------------------|---------|-------|
+| 🔹 **Raw Count** | TF(t,d) = f(t,d) | Simple count of term occurrences |
+| 🔹 **Boolean Frequency** | TF(t,d) = 1 if t occurs in d, 0 otherwise | Just indicates presence |
+| 🔹 **Term Frequency** | TF(t,d) = f(t,d) / ∑f(t',d) | Normalized by document length |
+| 🔹 **Log Normalization** | TF(t,d) = 1 + log(f(t,d)) | Dampens effect of high-frequency terms |
+| 🔹 **Double Normalization** | TF(t,d) = 0.5 + 0.5 * f(t,d) / max_t'(f(t',d)) | Scales between 0.5 and 1 |
+
+### 2️⃣ Calculate Inverse Document Frequency (IDF)
+
+For each term across all documents:
+
+| IDF Calculation Methods | Formula | Notes |
+|-------------------------|---------|-------|
+| 🔹 **Standard IDF** | IDF(t) = log(N / df(t)) | N = total docs, df = docs containing t |
+| 🔹 **Smooth IDF** | IDF(t) = log(1 + N / df(t)) | Prevents division by zero |
+| 🔹 **Probabilistic IDF** | IDF(t) = log((N - df(t)) / df(t)) | Derived from probabilistic model |
+
+### 3️⃣ Calculate TF-IDF
+
+For each term in each document, multiply TF and IDF.
+
+## 📊 Practical Example
+
+Let's work through a simple example using our corpus from previous examples:
+
+| Document | Content |
+|----------|---------|
+| 📑 **D1** | "people watch campusx" |
+| 📑 **D2** | "campusx watch campusx" |
+| 📑 **D3** | "people write comment" |
+| 📑 **D4** | "campusx write comment" |
+
+### Step 1: Calculate Term Frequency (TF)
+
+| Term | TF in D1 | TF in D2 | TF in D3 | TF in D4 |
+|------|----------|----------|----------|----------|
+| people | 1/3 = 0.33 | 0 | 1/3 = 0.33 | 0 |
+| watch | 1/3 = 0.33 | 1/3 = 0.33 | 0 | 0 |
+| campusx | 1/3 = 0.33 | 2/3 = 0.67 | 0 | 1/3 = 0.33 |
+| write | 0 | 0 | 1/3 = 0.33 | 1/3 = 0.33 |
+| comment | 0 | 0 | 1/3 = 0.33 | 1/3 = 0.33 |
+
+### Step 2: Calculate Document Frequency (DF) and IDF
+
+| Term | DF | IDF = log(4/DF) |
+|------|----|--------------------|
+| people | 2 | log(4/2) = log(2) ≈ 0.301 |
+| watch | 2 | log(4/2) = log(2) ≈ 0.301 |
+| campusx | 3 | log(4/3) ≈ 0.125 |
+| write | 2 | log(4/2) = log(2) ≈ 0.301 |
+| comment | 2 | log(4/2) = log(2) ≈ 0.301 |
+
+### Step 3: Calculate TF-IDF
+
+| Term | TF-IDF in D1 | TF-IDF in D2 | TF-IDF in D3 | TF-IDF in D4 |
+|------|--------------|--------------|--------------|--------------|
+| people | 0.33 × 0.301 ≈ 0.099 | 0 | 0.33 × 0.301 ≈ 0.099 | 0 |
+| watch | 0.33 × 0.301 ≈ 0.099 | 0.33 × 0.301 ≈ 0.099 | 0 | 0 |
+| campusx | 0.33 × 0.125 ≈ 0.041 | 0.67 × 0.125 ≈ 0.084 | 0 | 0.33 × 0.125 ≈ 0.041 |
+| write | 0 | 0 | 0.33 × 0.301 ≈ 0.099 | 0.33 × 0.301 ≈ 0.099 |
+| comment | 0 | 0 | 0.33 × 0.301 ≈ 0.099 | 0.33 × 0.301 ≈ 0.099 |
+
+### Resulting TF-IDF Document Vectors
+
+```
+D1: [0.099, 0.099, 0.041, 0, 0]
+D2: [0, 0.099, 0.084, 0, 0]
+D3: [0.099, 0, 0, 0.099, 0.099]
+D4: [0, 0, 0.041, 0.099, 0.099]
+```
+
+## 🔍 Interpreting TF-IDF Values
+
+| Value Range | Interpretation | Example |
+|-------------|----------------|---------|
+| 🔼 **High TF-IDF** | Term is important and distinctive to this document | "campusx" in D2 has highest value (appears multiple times but not in all docs) |
+| 🔽 **Low TF-IDF** | Term is either rare in the document or common across documents | Common terms or rarely used terms |
+| 0️⃣ **Zero TF-IDF** | Term doesn't appear in the document | "write" in D1 and D2 |
+
+## ✅ Advantages of TF-IDF
+
+| Advantage | Description | Impact |
+|-----------|-------------|--------|
+| 🌟 **Importance Weighting** | Distinguishes between important and common terms | Better document representation |
+| 🌟 **Noise Reduction** | Reduces impact of frequently occurring but less informative words | Cleaner feature space |
+| 🌟 **Simple Yet Effective** | Computationally efficient with good results | Industry standard for decades |
+| 🌟 **No Training Required** | Direct calculation from corpus statistics | Can be applied immediately to any dataset |
+| 🌟 **Interpretable** | Values have clear meaning | Useful for feature analysis and selection |
+| 🌟 **Domain Adaptability** | Automatically adjusts to domain-specific terminology | Works across various text types |
+
+## ❌ Disadvantages of TF-IDF
+
+| Disadvantage | Description | Impact |
+|--------------|-------------|--------|
+| 🔴 **Ignores Semantics** | Doesn't capture meaning or relationships between words | Semantic similarity not represented |
+| 🔴 **Ignores Word Order** | Bag-of-words approach loses sequential information | Context is lost |
+| 🔴 **High Dimensionality** | Feature space grows with vocabulary size | Curse of dimensionality issues |
+| 🔴 **Sparse Vectors** | Most entries are zero | Computational efficiency challenges |
+| 🔴 **Limited Context** | No consideration of document or corpus structure | Misses hierarchical information |
+| 🔴 **Requires Preprocessing** | Sensitive to stemming, stopword removal choices | Results depend on preprocessing steps |
+
+## 🚀 Common Applications of TF-IDF
+
+```mermaid
+graph TD
+    A[TF-IDF] --> B[Information Retrieval]
+    A --> C[Document Classification]
+    A --> D[Document Clustering]
+    A --> E[Keyword Extraction]
+    A --> F[Text Summarization]
+    A --> G[Recommendation Systems]
+```
+
+| Application | How TF-IDF Is Used | Why It's Effective |
+|-------------|-------------------|-------------------|
+| 🔍 **Search Engines** | Ranking documents by query term importance | Prioritizes distinctive matches over common term matches |
+| 📊 **Topic Modeling** | Identifying distinctive terms for topics | Highlights discriminative features |
+| 🧮 **Document Similarity** | Computing cosine similarity between TF-IDF vectors | Better than raw word count similarity |
+| 📑 **Text Summarization** | Identifying sentences with high TF-IDF words | Captures key content |
+| 🏷️ **Keyword Extraction** | Words with highest TF-IDF scores become keywords | Identifies distinctive terms |
+
+## 🌐 Extensions and Variations
+
+| Variation | Description | Advantage Over Basic TF-IDF |
+|-----------|-------------|----------------------------|
+| 📊 **BM25** (Okapi BM25) | Probabilistic extension with length normalization | Better handles long documents |
+| 📈 **Pivoted Length Normalization** | Adjusts for document length bias | More fair comparison across different document lengths |
+| 🧠 **LSI/LSA** | Applies SVD to TF-IDF matrix | Captures latent semantic structure |
+| 🧮 **Delta TF-IDF** | Compares TF-IDF across different corpora | Identifies distinctive terms between collections |
+| 🔄 **TF-PDF** | Term Frequency-Proportional Document Frequency | Alternative to IDF for short texts |
+
+## 💻 Implementation Example (Python)
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Our corpus
+corpus = [
+    "people watch campusx",
+    "campusx watch campusx",
+    "people write comment",
+    "campusx write comment"
+]
+
+# Create TF-IDF Vectorizer
+vectorizer = TfidfVectorizer()
+
+# Transform documents to TF-IDF features
+tfidf_matrix = vectorizer.fit_transform(corpus)
+
+# Get feature names
+feature_names = vectorizer.get_feature_names_out()
+
+# Print results
+for i, doc in enumerate(corpus):
+    print(f"Document {i+1}: {doc}")
+    # Get non-zero features for this document
+    feature_index = tfidf_matrix[i,:].nonzero()[1]
+    tfidf_scores = zip(feature_index, [tfidf_matrix[i, x] for x in feature_index])
+    # Sort by score
+    for idx, score in sorted(tfidf_scores, key=lambda x: x[1], reverse=True):
+        print(f"  {feature_names[idx]}: {score:.6f}")
+```
+
+## 🔄 TF-IDF vs. Other Text Representation Methods
+
+| Method | Captures Word Importance | Captures Semantics | Dimensionality | Training Required |
+|--------|-------------------------|-------------------|---------------|-------------------|
+| 📊 **Bag of Words** | ❌ | ❌ | High (V) | ❌ |
+| 📈 **TF-IDF** | ✅ | ❌ | High (V) | ❌ |
+| 🔤 **Word Embeddings** | ❌ | ✅ | Low (300-500) | ✅ |
+| 🧠 **Topic Models** | ✅ | ✅ | Low (topics) | ✅ |
+| 🔄 **Transformers** | ✅ | ✅ | Medium | ✅ |
+
+## 🌟 Evolution in NLP: From TF-IDF to Modern Approaches
+
+```mermaid
+graph LR
+    A[Bag of Words] --> B[TF-IDF]
+    B --> C[LSA/LSI]
+    C --> D[Word Embeddings]
+    D --> E[Contextual Embeddings]
+    E --> F[Transformer Models]
+```
+
+Despite its limitations, TF-IDF remains a foundational technique in NLP. Its computational efficiency, interpretability, and effectiveness make it a valuable tool for many text analysis tasks, even in the era of deep learning and transformer models.
+
+> 💡 **Final Insight**: TF-IDF strikes an elegant balance between simplicity and effectiveness. While newer methods can capture more semantic nuance, TF-IDF's combination of local (TF) and global (IDF) statistics provides a remarkably powerful representation with minimal computational cost.
 
