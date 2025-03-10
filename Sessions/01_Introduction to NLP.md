@@ -2,6 +2,11 @@
 
 # 🔍 Natural Language Processing (NLP) - Comprehensive Notes 📚
 
+| Title | Link |
+|-------|------|
+| Introduction to NLP End to End NLP Course | [YouTube](https://youtu.be/zlUpTlaxAKI?si=eI8b0K7oFfeEA25N) |
+| The Evolution and Impact of Natural Language Processing (NLP): A Comprehensive Guide | [Medium](https://medium.com/@yash.kavaiya3/the-evolution-and-impact-of-natural-language-processing-nlp-a-comprehensive-guide-a7b8be692db1) |
+
 ## 📘 What is NLP? 
 
 Natural Language Processing (NLP) is a subfield at the intersection of:
@@ -12,6 +17,8 @@ Natural Language Processing (NLP) is a subfield at the intersection of:
 It focuses on enabling computers to understand, interpret, and generate human language in a valuable way.
 
 > 💡 **Core Definition**: NLP is concerned with the interactions between computers and human language, specifically programming computers to process and analyze large amounts of natural language data.
+
+![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*REjBYIV_cRLMyCTY26tYNQ.png)
 
 ### 🗣️ Human Language vs. Computer Language
 
@@ -44,7 +51,7 @@ NLP bridges the gap between human communication and computer understanding by:
 - 🔄 Enabling computers to understand human intent and context
 - 🌐 Breaking down language barriers for global communication
 - 🤖 Creating more intuitive and natural interfaces for technology
-
+![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*6n9E9FPZ29jJ9auUrUFNug.png)
 ## 🌍 Real World Applications
 
 | Application | NLP Functions | Examples |
@@ -56,7 +63,7 @@ NLP bridges the gap between human communication and computer understanding by:
 | 💬 **Chatbots** | Intent recognition, Response generation | Customer service bots, Virtual assistants |
 | 📝 **Document Analysis** | Text summarization, Topic modeling | Legal document analysis, Research papers |
 | 🗣️ **Voice Assistants** | Speech recognition, Natural language understanding | Siri, Alexa, Google Assistant |
-
+![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*IJE1nvTrTBbnyFcRYjmOBg.png)
 ## 🛠️ Common NLP Tasks
 
 ### Text Processing Tasks
