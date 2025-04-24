@@ -27,13 +27,13 @@ graph LR
 
 Full Playlist :- https://youtube.com/playlist?list=PLKnIA16_RmvZo7fp5kkIth6nRTeQQsjfX&si=wgfTnxQ8Uo22L2ax
 
-| Session | Topic | Description | Resources |
-|---------|-------|-------------|-----------|
-| 01 | **Introduction to NLP** | Fundamentals, applications, and challenges in NLP | [Notes](Sessions/01_Introduction%20to%20NLP.md) • [Video](https://youtu.be/zlUpTlaxAKI?si=eI8b0K7oFfeEA25N) |
-| 02 | **End-to-End NLP Pipeline** | Complete workflow from data acquisition to deployment | [Notes](Sessions/02_End_to_End_NLP_Pipeline.md) • [Video](https://youtu.be/29qyNyNkLHs?si=TZWdyoIDLS3hqi7c) |
-| 03 | **Text Preprocessing** | Techniques for cleaning and preparing text data | [Notes](Sessions/03_Text%20Preprocessing.md) |
-| 04 | **Text Representation** | Methods to convert text into machine-readable formats | [Notes](Sessions/04_Text%20Representation.md) • [Assignment](Sessions/04_assignment-lecture4.py) |
-| 05 | **Word2Vec Tutorial** | Comprehensive guide to CBOW and Skip-gram architectures | [Notes](Sessions/05_Word2vec_Complete_Tutorial_CBOW_and_Skip-gram.md) |
+| Session | Topic | Description | Resources | Blog |
+|---------|-------|-------------|-----------|-----|
+| 01 | **Introduction to NLP** | Fundamentals, applications, and challenges in NLP | [Notes](Sessions/01_Introduction%20to%20NLP.md) • [Video](https://youtu.be/zlUpTlaxAKI?si=eI8b0K7oFfeEA25N) | [Blog](https://medium.com/@yash.kavaiya3/the-evolution-and-impact-of-natural-language-processing-nlp-a-comprehensive-guide-a7b8be692db1) |
+| 02 | **End-to-End NLP Pipeline** | Complete workflow from data acquisition to deployment | [Notes](Sessions/02_End_to_End_NLP_Pipeline.md) • [Video](https://youtu.be/29qyNyNkLHs?si=TZWdyoIDLS3hqi7c) |[Blog] ()|
+| 03 | **Text Preprocessing** | Techniques for cleaning and preparing text data | [Notes](Sessions/03_Text%20Preprocessing.md) |[Blog] ()|
+| 04 | **Text Representation** | Methods to convert text into machine-readable formats | [Notes](Sessions/04_Text%20Representation.md) • [Assignment](Sessions/04_assignment-lecture4.py) |[Blog] ()|
+| 05 | **Word2Vec Tutorial** | Comprehensive guide to CBOW and Skip-gram architectures | [Notes](Sessions/05_Word2vec_Complete_Tutorial_CBOW_and_Skip-gram.md) |[Blog] ()|
 
 ## 🎯 Learning Objectives
 
