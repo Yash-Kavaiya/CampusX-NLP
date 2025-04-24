@@ -1,6 +1,11 @@
 # Text Representation | NLP Lecture 4 | Bag of Words | Tf-Idf | N-grams, Bi-grams and Uni-grams
 
 # Feature Extraction in NLP: Text Representation 📊🔤
+## 📚 Resources
+
+📹 **Video Tutorial**: [Watch on YouTube]()
+
+📝 **Article**: [From Words to Vectors: Understanding Text Representation in NLP](https://medium.com/@yash.kavaiya3/from-words-to-vectors-understanding-text-representation-in-nlp-f76b492fa2a5)
 
 ## 1. What is Feature Extraction (Text Representation)? 🤔
 
