@@ -25,6 +25,8 @@ graph LR
 
 ## 📋 Course Contents
 
+Full Playlist :- https://youtube.com/playlist?list=PLKnIA16_RmvZo7fp5kkIth6nRTeQQsjfX&si=wgfTnxQ8Uo22L2ax
+
 | Session | Topic | Description | Resources |
 |---------|-------|-------------|-----------|
 | 01 | **Introduction to NLP** | Fundamentals, applications, and challenges in NLP | [Notes](Sessions/01_Introduction%20to%20NLP.md) • [Video](https://youtu.be/zlUpTlaxAKI?si=eI8b0K7oFfeEA25N) |
